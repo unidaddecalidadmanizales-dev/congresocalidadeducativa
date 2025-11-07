@@ -1,43 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Registro Día 1 - Congreso Calidad Educativa</title>
     <link rel="icon" type="image/x-icon" href="Img/Logos/ALCALDÍA DE MANIZALES/LOGO ALCALDÍA solo logo.png">
     <style>
-         /* RESET BÁSICO */
+        /* RESET BÁSICO */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body, html {
+
+        html, body {
             width: 100%;
-            height: 100%;
+            /* No fijar height: 100% aquí, permite que el body crezca */
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* SOLO ELIMINA SCROLL HORIZONTAL */
+            overflow-x: hidden; /* Solo evita scroll horizontal */
         }
-        
-        /* CONTENEDOR PRINCIPAL CON SCROLL VERTICAL */
+
+        /* CONTENEDOR PRINCIPAL */
         .container {
             width: 100%;
-            min-height: 100vh;
-            position: relative;
+            /* No es necesario min-height: 100vh si el iframe define la altura */
         }
-        
-        /* IFRAME QUE OCUPA TODO EL CONTENIDO */
+
+        /* IFRAME: altura fija grande para asegurar visibilidad total */
         .form-iframe {
             width: 100%;
-            height: 100vh; /* Altura inicial de viewport */
+            height: 2000px; /* Ajusta este valor si el formulario crece */
             border: none;
             display: block;
+            background: #f9f9f9; /* Opcional: mejora percepción de carga */
         }
-        
-        /* LOADING QUE CUBRE TODA LA PANTALLA */
+
+        /* LOADING DE PANTALLA COMPLETA */
         .loading {
             position: fixed;
             top: 0;
@@ -52,11 +51,12 @@
             color: white;
             z-index: 1000;
         }
-        
+
         .loading.hidden {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
-        
+
         .spinner {
             width: 50px;
             height: 50px;
@@ -66,12 +66,13 @@
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
-        
+
         .loading-text {
             font-size: 18px;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -83,24 +84,28 @@
         <div class="spinner"></div>
         <div class="loading-text">Cargando formulario...</div>
     </div>
-    
-    <iframe 
-        src="https://script.google.com/macros/s/AKfycbyBjXUzYf5Ha2Y_ok-RzhPpX-TF86Lav7faiQXPl_5e6fJxlp0NbTj5kmbPjpYlc4Se/exec"
-        onload="hideLoading()"
-    ></iframe>
+
+    <div class="container">
+        <iframe
+            class="form-iframe"
+            src="https://script.google.com/macros/s/AKfycbyBjXUzYf5Ha2Y_ok-RzhPpX-TF86Lav7faiQXPl_5e6fJxlp0NbTj5kmbPjpYlc4Se/exec"
+            onload="hideLoading()"
+        ></iframe>
+    </div>
 
     <script>
         function hideLoading() {
             const loading = document.getElementById('loading');
-            setTimeout(() => {
+            if (loading) {
                 loading.classList.add('hidden');
+                // Opcional: eliminar del DOM después de la transición
                 setTimeout(() => {
                     loading.style.display = 'none';
                 }, 500);
-            }, 1000); // Espera 1 segundo después de cargar para mejor UX
+            }
         }
-        
-        // Backup: ocultar loading después de 8 segundos máximo
+
+        // Fallback: ocultar loading después de 8 segundos
         setTimeout(() => {
             const loading = document.getElementById('loading');
             if (loading && !loading.classList.contains('hidden')) {
@@ -112,6 +117,4 @@
         }, 8000);
     </script>
 </body>
-
 </html>
-
