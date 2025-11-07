@@ -6,34 +6,37 @@
     <title>Verificación asistencia - Congreso Calidad Educativa</title>
     <link rel="icon" type="image/x-icon" href="Img/Logos/ALCALDÍA DE MANIZALES/LOGO ALCALDÍA solo logo.png">
     <style>
-         * {
+         /* RESET BÁSICO */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body, html {
+
+        html, body {
             width: 100%;
-            height: 100%;
+            /* No fijar height: 100% aquí, permite que el body crezca */
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* SOLO ELIMINA SCROLL HORIZONTAL */
+            overflow-x: hidden; /* Solo evita scroll horizontal */
         }
-        
-        /* CONTENEDOR PRINCIPAL CON SCROLL VERTICAL */
+
+        /* CONTENEDOR PRINCIPAL */
         .container {
             width: 100%;
-            min-height: 100vh;
-            position: relative;
+            /* No es necesario min-height: 100vh si el iframe define la altura */
         }
-        
-        /* IFRAME QUE OCUPA TODO EL CONTENIDO */
+
+        /* IFRAME: altura fija grande para asegurar visibilidad total */
         .form-iframe {
             width: 100%;
-            height: 100vh; /* Altura inicial de viewport */
+            height: 2000px; /* Ajusta este valor si el formulario crece */
             border: none;
             display: block;
+            background: #f9f9f9; /* Opcional: mejora percepción de carga */
         }
+
+        /* LOADING DE PANTALLA COMPLETA */
         .loading {
             position: fixed;
             top: 0;
@@ -47,12 +50,13 @@
             align-items: center;
             color: white;
             z-index: 1000;
-            transition: opacity 0.5s ease;
         }
+
         .loading.hidden {
             opacity: 0;
             pointer-events: none;
         }
+
         .spinner {
             width: 50px;
             height: 50px;
@@ -62,10 +66,13 @@
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
+
         .loading-text {
             font-size: 18px;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -106,4 +113,5 @@
         }, 8000);
     </script>
 </body>
+
 </html>
