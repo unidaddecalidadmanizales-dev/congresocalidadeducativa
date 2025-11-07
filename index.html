@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primer Congreso de Calidad Educativa</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* ===== VARIABLES Y RESET ===== */
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2d3748;
+            --accent-gold: #d4af37;
+            --light-gold: #f4e4a9;
+            --text-light: #ffffff;
+            --text-dark: #2d3748;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: 
+                linear-gradient(135deg, rgba(26, 54, 93, 0.92) 0%, rgba(45, 55, 72, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ===== HEADER HERO ===== */
+        .hero {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.98);
+            color: var(--primary-blue);
+            padding: 40px 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--light-gold);
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.6em;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            color: var(--secondary-blue);
+            font-weight: 600;
+        }
+
+        .hero .event-dates {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: var(--primary-blue);
+        }
+
+        .hero .highlight {
+            color: var(--accent-gold);
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== DESCRIPTION ===== */
+        .description {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-dark);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            line-height: 1.7;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .description p {
+            margin-bottom: 15px;
+        }
+
+        .description strong {
+            color: var(--primary-blue);
+        }
+
+        .call-to-action {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: var(--light-gold);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* ===== REGISTRATION CARDS ===== */
+        .registration-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 35px 25px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--primary-blue));
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+            border-color: var(--accent-gold);
+        }
+
+        .day-card h3 {
+            font-size: 1.8em;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .day-date {
+            font-size: 1.2em;
+            color: var(--secondary-blue);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .day-highlight {
+            font-size: 1em;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-weight: 600;
+            padding: 8px 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .day-description {
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-register {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.25);
+            margin: 8px;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-register::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-register:hover::before {
+            left: 100%;
+        }
+
+        .btn-register:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.35);
+        }
+
+        .btn-register:active {
+            transform: translateY(0);
+        }
+
+        .btn-dia1 { 
+            background: linear-gradient(135deg, #1a365d, #2a4365); 
+        }
+        .btn-dia2 { 
+            background: linear-gradient(135deg, #2a4365, #1a365d); 
+        }
+
+        .btn-dia1:hover { background: linear-gradient(135deg, #2a4365, #1a365d); }
+        .btn-dia2:hover { background: linear-gradient(135deg, #1a365d, #2a4365); }
+
+        /* ===== COMPACT INFO ===== */
+        .compact-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .info-items {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--primary-blue);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: var(--text-dark);
+            font-size: 1em;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .footer .organization {
+            font-size: 0.95em;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2em; }
+            .hero .subtitle { font-size: 1.3em; letter-spacing: 2px; }
+            .registration-section { grid-template-columns: 1fr; }
+            .day-card { padding: 25px 20px; }
+            .btn-register { padding: 14px 25px; font-size: 1.1em; min-width: 180px; }
+            .info-items { gap: 25px; flex-direction: column; }
+            .container { padding: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 10px; }
+            .hero { padding: 25px 20px; }
+            .hero h1 { font-size: 1.8em; }
+            .description { padding: 20px 15px; font-size: 1em; }
+            .compact-info { padding: 20px 15px; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Header -->
+        <header class="hero fade-in">
+            <h1>Primer Congreso de Calidad Educativa</h1>
+            <div class="subtitle">MANIZALES</div>
+            <div class="event-dates">
+                <span class="highlight">Noviembre 2025</span>
+            </div>
+        </header>
+
+        <!-- Descripción del Evento -->
+        <section class="description fade-in delay-1">
+            <p>
+                La <strong>Unidad de Calidad</strong> tiene el gusto de invitarlos a participar en el 
+                <strong>"Primer Congreso de Calidad Educativa de Manizales"</strong>, un evento que reunirá 
+                a reconocidos expertos nacionales e internacionales en el ámbito de la educación.
+            </p>
+            <div class="call-to-action">
+                ¡Selecciona el día al que deseas asistir!
+            </div>
+        </section>
+
+        <!-- Sección de Registro -->
+        <section class="registration-section">
+            <!-- Día 1 -->
+            <div class="day-card fade-in delay-1">
+                <h3>📅 Día 1</h3>
+                <div class="day-date">Martes - 18 de Noviembre 2025</div>
+                <div class="day-highlight">Sesión Inaugural</div>
+                <p class="day-description">
+                    Inicio del congreso con ponencias de expertos internacionales y sesiones de networking profesional.
+                </p>
+                <a href="dia1.html" class="btn-register btn-dia1">
+                    Registrarse Día 1
+                </a>
+            </div>
+
+            <!-- Día 2 -->
+            <div class="day-card fade-in delay-2">
+                <h3>🎯 Día 2</h3>
+                <div class="day-date">Miércoles - 19 de Noviembre 2025</div>
+                <div class="day-highlight">Talleres y Clausura</div>
+                <p class="day-description">
+                    Mesas de trabajo y sesión de clausura con conclusiones del evento.
+                </p>
+                <a href="dia2.html" class="btn-register btn-dia2">
+                    Registrarse Día 2
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in delay-3">
+            <p>&copy; 2025 Primer Congreso de Calidad Educativa - Manizales</p>
+            <p class="organization">Organizado por la Unidad de Calidad de Manizales</p>
+        </footer>
+    </div>
+
+    <script>
+        // Efectos de animación al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach((element) => {
+                element.style.opacity = '1';
+            });
+
+            // Efecto hover suave para las cards
+            const cards = document.querySelectorAll('.day-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
