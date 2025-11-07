@@ -1,39 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Registro Día 2 - Congreso Calidad Educativa</title>
     <link rel="icon" type="image/x-icon" href="Img/Logos/ALCALDÍA DE MANIZALES/LOGO ALCALDÍA solo logo.png">
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body, html {
+
+        html, body {
             width: 100%;
-            height: 100%;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* SOLO ELIMINA SCROLL HORIZONTAL */
+            overflow-x: hidden; /* Evita scroll horizontal */
+            /* ¡NO fijar height: 100% aquí! Permite que el body crezca con el contenido */
         }
-        
-        /* CONTENEDOR PRINCIPAL CON SCROLL VERTICAL */
-        .container {
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        /* IFRAME QUE OCUPA TODO EL CONTENIDO */
+
         .form-iframe {
             width: 100%;
-            height: 100vh; /* Altura inicial de viewport */
+            height: 2000px; /* Ajusta si el formulario es más largo */
             border: none;
             display: block;
+            background: #f9f9f9; /* Opcional: mejora percepción visual mientras carga */
         }
+
         .loading {
             position: fixed;
             top: 0;
@@ -49,10 +43,12 @@
             z-index: 1000;
             transition: opacity 0.5s ease;
         }
+
         .loading.hidden {
             opacity: 0;
             pointer-events: none;
         }
+
         .spinner {
             width: 50px;
             height: 50px;
@@ -62,10 +58,13 @@
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
+
         .loading-text {
             font-size: 18px;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -77,8 +76,9 @@
         <div class="spinner"></div>
         <div class="loading-text">Cargando formulario...</div>
     </div>
-    
-    <iframe 
+
+    <iframe
+        class="form-iframe"
         src="https://script.google.com/macros/s/AKfycbwoveMZXxNThIYk5BK0Q5rT8CKrpxcaSvXR22iC3uwmegJ-oPlchxmYJFGlB15ptSQYgw/exec"
         onload="hideLoading()"
     ></iframe>
@@ -86,15 +86,15 @@
     <script>
         function hideLoading() {
             const loading = document.getElementById('loading');
-            setTimeout(() => {
+            if (loading) {
                 loading.classList.add('hidden');
                 setTimeout(() => {
                     loading.style.display = 'none';
                 }, 500);
-            }, 1000); // Espera 1 segundo después de cargar para mejor UX
+            }
         }
-        
-        // Backup: ocultar loading después de 8 segundos máximo
+
+        // Fallback de seguridad
         setTimeout(() => {
             const loading = document.getElementById('loading');
             if (loading && !loading.classList.contains('hidden')) {
